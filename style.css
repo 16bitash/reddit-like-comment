@@ -1,0 +1,43 @@
+.input-and-button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 9999px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.875;
+  border: none;
+  color: white;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.success {
+  background-color: #009ada;
+}
+
+.success:hover {
+  background-color: #0ba5e5;
+}
+
+.delete {
+  background-color: #ec164c;
+}
+
+.delete:hover {
+  background-color: #f44572;
+}
+
+.add-button {
+  margin-left: 8px;
+}
+
+.comment-wrapper {
+  width: 600px;
+  margin: 20px auto;
+}
