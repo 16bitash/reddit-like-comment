@@ -11,46 +11,28 @@
   <body>
     <div>
       <div class="input-and-button-wrapper">
-        <input />
+        <input class="comment-input" />
         <button class="button success add-button">Add</button>
       </div>
 
       <div class="comment-wrapper">
-        <div class="comment">
+        <div class="comment hide-reply">
           <div class="comment-text">This is a comment</div>
+
           <div class="button-and-likes-wrapper">
             <button class="button success">Reply</button>
             <button class="button success">Like</button>
             <button class="button delete">Delete</button>
+
             <div class="likes-text">| 0 Likes</div>
           </div>
 
-          <div class="comment">
-            <div class="comment-text">This is a comment</div>
-            <div>
-              <button class="button success">Reply</button>
-              <button class="button success">Like</button>
-              <button class="button delete">Delete</button>
-            </div>
-
-            <div class="comment">
-              <div class="comment-text">This is a comment</div>
-              <div>
-                <button class="button success">Reply</button>
-                <button class="button success">Like</button>
-                <button class="button delete">Delete</button>
-              </div>
-            </div>
+          <div class="reply-wrapper">
+            <input />
+            <button class="button success">Add</button>
+            <button class="button delete">Cancel</button>
           </div>
 
-          <div class="comment">
-            <div class="comment-text">This is a comment</div>
-            <div>
-              <button class="button success">Reply</button>
-              <button class="button success">Like</button>
-              <button class="button delete">Delete</button>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -48,15 +48,26 @@
 }
 
 .comment-text {
-    font-size: 32px;
+  font-size: 32px;
 }
 
 .button-and-likes-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .likes-text {
-    font-size: 20px;
+  font-size: 20px;
+}
+
+.reply-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.hide-reply > .reply-wrapper {
+  display: none;
 }
