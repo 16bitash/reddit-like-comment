@@ -41,3 +41,22 @@
   width: 600px;
   margin: 20px auto;
 }
+
+.comment {
+  margin-left: 28px;
+  margin-top: 8px;
+}
+
+.comment-text {
+    font-size: 32px;
+}
+
+.button-and-likes-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.likes-text {
+    font-size: 20px;
+}
