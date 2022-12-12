@@ -2,9 +2,24 @@ const commentWrapper = document.querySelector(".comment-wrapper");
 const commentInput = document.querySelector(".comment-input");
 const addButton = document.querySelector(".add-button");
 
-const comments = [
-  //   { id: 1, text: "This is a comment", likes: 0, replies: [] },
-];
+const localStorageKey = "state";
+
+const initializeComments = () => {
+  const state = localStorage.getItem(localStorageKey);
+
+  if (!state) {
+    return [];
+  }
+
+  return JSON.parse(state);
+};
+
+const comments = initializeComments();
+
+const saveState = () => {
+  const state = JSON.stringify(comments);
+  localStorage.setItem(localStorageKey, state);
+};
 
 const createCommentObject = (commentText) => {
   return {
@@ -65,6 +80,7 @@ const createCommentNode = (comment) => {
   likeButton.innerText = "Like";
   likeButton.onclick = () => {
     comment.likes++;
+    saveState();
     renderComments();
   };
 
@@ -73,6 +89,7 @@ const createCommentNode = (comment) => {
   deleteButton.innerText = "Delete";
   deleteButton.onclick = () => {
     deleteComment(comments, comment.id);
+    saveState();
     renderComments();
   };
 
@@ -103,6 +120,7 @@ const createCommentNode = (comment) => {
 
     commentObj.replies.push(newReplyObject);
 
+    saveState();
     renderComments();
   };
 
@@ -156,9 +174,12 @@ const addComment = () => {
   const newCommentObject = createCommentObject(commentText);
 
   comments.push(newCommentObject);
+  saveState();
+
   commentInput.value = "";
 
   renderComments();
 };
 
 addButton.addEventListener("click", addComment);
+renderComments();
