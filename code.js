@@ -15,6 +15,35 @@ const createCommentObject = (commentText) => {
   };
 };
 
+const findCommentObject = (comments, commentId) => {
+  for (let i = 0; i < comments.length; i++) {
+    const comment = comments[i];
+
+    if (comment.id === commentId) {
+      return comment;
+    }
+
+    const foundComment = findCommentObject(comment.replies, commentId);
+
+    if (foundComment) {
+      return foundComment;
+    }
+  }
+};
+
+const deleteComment = (comments, commentId) => {
+  for (let i = 0; i < comments.length; i++) {
+    const comment = comments[i];
+
+    if (comment.id === commentId) {
+      comments.splice(i, 1);
+      return;
+    }
+
+    deleteComment(comment.replies, commentId);
+  }
+};
+
 const createCommentNode = (comment) => {
   const commentNode = document.createElement("div");
   commentNode.classList.add("comment", "hide-reply");
@@ -34,10 +63,18 @@ const createCommentNode = (comment) => {
   const likeButton = document.createElement("button");
   likeButton.classList.add("button", "success");
   likeButton.innerText = "Like";
+  likeButton.onclick = () => {
+    comment.likes++;
+    renderComments();
+  };
 
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("button", "delete");
   deleteButton.innerText = "Delete";
+  deleteButton.onclick = () => {
+    deleteComment(comments, comment.id);
+    renderComments();
+  };
 
   const likeText = document.createElement("div");
   likeText.innerText = `${comment.likes} likes`;
@@ -55,11 +92,14 @@ const createCommentNode = (comment) => {
     const replyText = replyInput.value;
     const commentId = comment.id;
 
+    if (replyText === "") {
+      alert("Please enter a reply");
+      return;
+    }
+
     const newReplyObject = createCommentObject(replyText);
 
-    const commentObj = comments.find(
-      (commentObject) => commentObject.id === commentId
-    );
+    const commentObj = findCommentObject(comments, commentId);
 
     commentObj.replies.push(newReplyObject);
 
@@ -96,7 +136,6 @@ const createCommentNode = (comment) => {
 };
 
 const renderComments = () => {
-  console.log(comments);
   commentWrapper.innerText = "";
 
   comments.forEach((comment) => {
@@ -114,9 +153,9 @@ const addComment = () => {
     return;
   }
 
-  const newComment = createCommentObject(commentText);
+  const newCommentObject = createCommentObject(commentText);
 
-  comments.push(newComment);
+  comments.push(newCommentObject);
   commentInput.value = "";
 
   renderComments();
